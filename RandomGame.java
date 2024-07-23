@@ -26,9 +26,9 @@ import java.util.*;
                         score++;
                         guessed = true;
                     }
-                } catch (Exception e) {
-                    System.out.println("Error has occurred");
-                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Input must be an integer. Please try again.");
+                    sc.next();
                 }
                 
             }
