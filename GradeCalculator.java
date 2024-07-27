@@ -1,5 +1,5 @@
 import  java.util.*;
-class GradeCalulator {
+class GradeCalculator {
     public static void main(String[] args) {
     System.out.println("Enter marks of the following subjects, out of 100.");  
     Scanner sc =new Scanner(System.in);
@@ -21,9 +21,10 @@ class GradeCalulator {
      char grade;
         if (avg>= 90) {
             grade = 'A';
-        } else if (avg >= 70) {
+        } else if (90>avg && avg>= 70) {
             grade = 'B';
-        } else if (avg >= 40) {
+        }
+        else if (70 >avg && avg>= 40) {
             grade = 'C';
         } else {
             grade = 'F';
