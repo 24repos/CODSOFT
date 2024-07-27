@@ -1,34 +1,19 @@
 import java.util.Scanner;
-/*public class Main {
+
+public class ATM {
     public static void main(String[] args) {
         BankAccount userAccount = new BankAccount(1000); // initial balance
         ATM atm = new ATM(userAccount);
         atm.displayMenu();
     }
-}
-public class BankAccount {
-    private double balance;
 
-    public BankAccount(double initialBalance) {
-        this.balance = initialBalance;
-    }
-
-    public double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
-} */
-
-public class ATM {
     private BankAccount account;
 
     public ATM(BankAccount account) {
         this.account = account;
     }
 
+    // Design the user interface for the ATM
     public void displayMenu() {
         Scanner sc = new Scanner(System.in);
         int choice;
@@ -65,27 +50,53 @@ public class ATM {
         sc.close();
     }
 
+    // Implement methods for each option
     public void withdraw(double amount) {
-        if (account.getBalance() >= amount && amount > 0) {
-            account.setBalance(account.getBalance() - amount);
-            System.out.println("You have withdrawn: Rs" + amount);
-            System.out.println("New balance: Rs" + account.getBalance());
-        } else {
-            System.out.println("Insufficient balance or invalid amount.");
+        try {
+            if (account.getBalance() >= amount && amount > 0) {
+                account.setBalance(account.getBalance() - amount);
+                System.out.println("You have withdrawn: $" + amount);
+                System.out.println("New balance: $" + account.getBalance());
+            } else {
+                throw new Exception("Insufficient balance or invalid amount.");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 
     public void deposit(double amount) {
-        if (amount > 0) {
-            account.setBalance(account.getBalance() + amount);
-            System.out.println("You have deposited: Rs" + amount);
-            System.out.println("New balance: Rs" + account.getBalance());
-        } else {
-            System.out.println("Invalid amount.");
+        try {
+            if (amount > 0) {
+                account.setBalance(account.getBalance() + amount);
+                System.out.println("You have deposited: $" + amount);
+                System.out.println("New balance: $" + account.getBalance());
+            } else {
+                throw new Exception("Invalid amount.");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 
     public void checkBalance() {
-        System.out.println("Your current balance is: Rs" + account.getBalance());
+        System.out.println("Your current balance is: $" + account.getBalance());
+    }
+}
+
+// Class to represent the user's bank account
+class BankAccount {
+    private double balance;
+
+    public BankAccount(double initialBalance) {
+        this.balance = initialBalance;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 }
